@@ -1,0 +1,13 @@
+docker network ls
+docker network create new_network 
+docker network inspect new_network 
+
+docker build -t mongo_image:latest .
+docker run -dp 3000:3000 --env-file ./.env --network new_network --name mongo_container mongo_image:latest
+
+docker images
+docker ps 
+
+docker rm <container_name / container_id>
+docker rmi <image_name / image_id>
+
