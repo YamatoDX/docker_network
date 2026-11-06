@@ -8,6 +8,7 @@ docker run -dp 3000:3000 --env-file ./.env --network new_network --name mongo_co
 docker images
 docker ps 
 
+docker stop <container_name / container_id>
 docker rm <container_name / container_id>
 docker rmi <image_name / image_id>
 
