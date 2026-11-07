@@ -12,3 +12,14 @@ docker stop <container_name / container_id>
 docker rm <container_name / container_id>
 docker rmi <image_name / image_id>
 
+docker compose up -d 
+
+# This will re-build the images and will spin containers out of them
+docker compose up -d --build  
+
+# This will stop, remove the containers and the associated images as well
+docker compose down --rmi all
+
+# This will only stop, remove the containers only
+docker compose down
+
