@@ -9,6 +9,8 @@ services:
       - ./mongo-app/.env 
     ports:
       - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
     healthcheck:
       test:
         - CMD-SHELL
@@ -38,4 +40,7 @@ services:
     depends_on:
       mongo_container:
         condition: service_healthy
+
+volumes:
+  mongo-data:
     
