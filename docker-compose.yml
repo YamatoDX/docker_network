@@ -1,0 +1,41 @@
+services:
+  mongo_container:
+    container_name: mongo_container
+    restart: unless-stopped
+    build:
+      context: ./mongo-app
+      dockerfile: Dockerfile 
+    env_file:
+      - ./mongo-app/.env 
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          mongosh --quiet
+          -u "$$MONGO_INITDB_ROOT_USERNAME"
+          -p "$$MONGO_INITDB_ROOT_PASSWORD"
+          --authenticationDatabase admin
+          --eval 'db.adminCommand({ ping: 1 })'
+          >/dev/null
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+    
+  express_container:
+    container_name: express_container 
+    restart: unless-stopped
+    build:
+      context: ./express-app 
+      dockerfile: Dockerfile 
+    env_file:
+      - ./express-app/.env 
+    ports:
+      - "3000:3000"
+    depends_on:
+      mongo_container:
+        condition: service_healthy
+    

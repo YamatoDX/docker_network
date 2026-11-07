@@ -5,10 +5,11 @@ const { MongoClient } = require("mongodb");
 const app = express();
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const client = new MongoClient(
-  "mongodb://admin:devpassword123@mongo_container:27017/myapp?authSource=admin",
+  // "mongodb://admin:devpassword123@mongo_container:27017/myapp?authSource=admin",
+  process.env.MONGO_URI,
   { serverSelectionTimeoutMS: 5000 }
 );
 
