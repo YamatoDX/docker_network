@@ -23,6 +23,11 @@ docker compose down --rmi all
 # This will only stop, remove the containers only
 docker compose down
 
+docker volume ls 
+
+# This will stop, remove all the images, containers and volumes 
+docker compose down -v --rmi all
+
 # The docker file names
 docker-compose.yml
 Dockerfile
