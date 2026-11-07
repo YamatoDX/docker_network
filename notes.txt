@@ -23,3 +23,7 @@ docker compose down --rmi all
 # This will only stop, remove the containers only
 docker compose down
 
+# The docker file names
+docker-compose.yml
+Dockerfile
+.dockerignore
